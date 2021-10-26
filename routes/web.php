@@ -1,25 +1,29 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AuthorisationController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\MainPageController;
+use App\Http\Controllers\NewsController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
- return view('welcome');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
+ //Route::resource('/', AuthorisationController::class);
+ Route::get('/', [AuthorisationController::class, 'index']);
+ //Route::resource('/news', AdminNewsController::class);
+ Route::get('/news', [AdminNewsController::class, 'index']);
 });
 
-Route::get('/hello/{name}', function($name){
- return "Hello, {$name}!";
-});
-
-Route::get('/news', function(){
- return "News";
-});
+Route::get('/', [MainPageController::class, 'index']);
+# < Возможно сократить?
+Route::get('/news', [NewsController::class, 'getAllNews'])
+ ->name('news.allNews'); //Присвоение имени роутеру по которому в дальнейшем можно к нему обращаться
+Route::get('/news/{id}', [NewsController::class, 'getOneNews'])
+ ->where('id', '\d+')
+ ->name('news.oneNews');
+Route::get('/news/sections', [NewsController::class, 'getSections'])
+ ->name('news.sections');
+Route::get('/news/section/{id}', [NewsController::class, 'getSection'])
+ ->where('id', '\d+')
+ ->name('news.section');
+# > Возможно сократить?
