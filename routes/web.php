@@ -1,15 +1,17 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MainPageController;
-use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Admin\AuthorisationController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\MainPageController;
+use App\Http\Controllers\NewsController;
 
 
-//Route::get('/admin/news', [AdminNewsController::class, 'index']);
-Route::group(['prefix' => 'admin', 'as' => 'admin'], function(){
- Route::resource('', AuthorisationController::class);
- Route::resource('news', AdminNewsController::class);
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
+ //Route::resource('/', AuthorisationController::class);
+ Route::get('/', [AuthorisationController::class, 'index']);
+ //Route::resource('/news', AdminNewsController::class);
+ Route::get('/news', [AdminNewsController::class, 'index']);
 });
 
 Route::get('/', [MainPageController::class, 'index']);

@@ -1,3 +1,6 @@
+@section('title') Authorisation / @parent @stop
+@extends('layouts.admin')
+@section('content')
 <h1>Представтесь</h1>
 
 <form>
@@ -10,3 +13,5 @@
 
  <button>Enter</button>
 </form>
+
+@endsection

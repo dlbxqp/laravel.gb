@@ -20,6 +20,7 @@ class Controller extends BaseController{
     'title' => $faker->title,
     'author' => $faker->userName(),
     'image' => null,
+    'date' => now()->format('Y-m-d H:i'),
     'description' => $faker->sentence(10)
    ];
   }
