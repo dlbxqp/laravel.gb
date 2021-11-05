@@ -44,17 +44,46 @@ document.createElement('nav')
   <script src="//cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <!-- + -->
   <script src="//unpkg.com/imask"></script>
+
+  <style>
+article{
+ flex-grow: 1
+}
+
+h1{
+ padding: 10px
+}
+
+
+.breadcrumbs{
+ border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+ margin-bottom: 2vmax;
+ padding: 10px 0
+}
+
+.breadcrumbs a{
+ font-size: 0.8em; text-decoration: none; text-transform: uppercase;
+}
+.breadcrumbs a:hover{
+ color: darkseagreen
+}
+
+
+@stack('css')
+  </style>
  </head>
 
  <body><!--@include('includes.messages')-->
   <main>
-   <x-admin.header></x-admin.header>
+   <x-header></x-header>
    <article>
 @yield('content')
    </article>
-   <x-admin.footer></x-admin.footer>
+   <x-footer></x-footer>
   </main>
  </body>
 
- @stack('js')
+ <script>
+@stack('js')
+ </script>
 </html>

@@ -1,7 +1,20 @@
 @section('title') Все новости / @parent @stop
-@extends('layouts.admin')
-@section('content')
 
+@extends('layouts.admin')
+
+@push('css')
+table{
+ margin: 0 10px
+}
+tr > *{
+ padding: 1vmax 2vmax
+}
+td{
+ border-top: 1px solid rgba(0, 0, 0, 0.2)
+}
+@endpush
+
+@section('content')
 <h1>Все новости:</h1>
 
 <table>
@@ -17,14 +30,14 @@
   </tr>
  </thead>
  <tbody>
- @forelse($allNews as $news)
+ @forelse($allNews as $oneNews)
   <tr>
-   <td>{{$news['id']}}</td>
-   <td>{{$news['date']}}</td>
-   <td>{{$news['title']}}</td>
-   <td>{{$news['author']}}</td>
-   <td>{{$news['image']}}</td>
-   <td>{!!$news['description']!!}</td>
+   <td>{{$oneNews['id']}}</td>
+   <td>{{$oneNews['date']}}</td>
+   <td>{{$oneNews['title']}}</td>
+   <td>{{$oneNews['author']}}</td>
+   <td>{{$oneNews['image']}}</td>
+   <td>{!!$oneNews['description']!!}</td>
    <td></td>
   </tr>
  @empty

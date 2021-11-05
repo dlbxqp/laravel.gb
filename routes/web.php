@@ -7,11 +7,20 @@ use App\Http\Controllers\NewsController;
 
 
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
+Route::group(['prefix' => 'a', 'as' => 'admin.'], function(){
  //Route::resource('/', AuthorisationController::class);
  Route::get('/', [AuthorisationController::class, 'index']);
  //Route::resource('/news', AdminNewsController::class);
- Route::get('/news', [AdminNewsController::class, 'index']);
+ Route::get('/news', [AdminNewsController::class, 'getAllNews'])
+  ->name('news.allNews'); //Присвоение имени роутеру по которому в дальнейшем можно к нему обращаться
+ Route::get('/news/{id}', [AdminNewsController::class, 'getOneNews'])
+  ->where('id', '\d+')
+  ->name('news.oneNews');
+ Route::get('/news/sections', [AdminNewsController::class, 'getSections'])
+  ->name('news.sections');
+ Route::get('/news/section/{id}', [AdminNewsController::class, 'getSection'])
+  ->where('id', '\d+')
+  ->name('news.section');
 });
 
 Route::get('/', [MainPageController::class, 'index']);

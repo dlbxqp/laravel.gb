@@ -46,32 +46,10 @@ document.createElement('nav')
   <script src="//unpkg.com/imask"></script>
 
   <style>
-main > div{
- display: flex;
- flex-grow: 1
+main{
+ justify-content: center !important; align-items: center
 }
 
-article{
- flex-grow: 1
-}
-
-h1{
- padding: 10px
-}
-
-
-.breadcrumbs{
- border-bottom: 1px solid rgba(0, 0, 0, 0.2);
- margin-bottom: 2vmax;
- padding: 10px 0
-}
-
-.breadcrumbs a{
- font-size: 0.8em; text-decoration: none; text-transform: uppercase;
-}
-.breadcrumbs a:hover{
- color: darkseagreen
-}
 
 
 @stack('css')
@@ -80,14 +58,7 @@ h1{
 
  <body>
   <main>
-   <x-admin.header></x-admin.header>
-   <div>
-    <x-admin.sidebar></x-admin.sidebar>
-    <article>
 @yield('content')
-    </article>
-   </div>
-   <x-admin.footer></x-admin.footer>
   </main>
  </body>
 

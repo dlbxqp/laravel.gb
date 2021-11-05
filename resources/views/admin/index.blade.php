@@ -1,8 +1,18 @@
 @section('title') Authorisation / @parent @stop
-@extends('layouts.admin')
-@section('content')
-<h1>Представтесь</h1>
 
+@extends('layouts.authorisation')
+
+@push('css')
+form{
+ display: flex; flex-direction: column;
+ padding: 1vmax 2vmax
+}
+form > *:not(:last-child){
+ margin-bottom: 2px
+}
+@endpush
+
+@section('content')
 <form>
  <label>
   <input name="login" placeholder="login">
@@ -13,5 +23,4 @@
 
  <button>Enter</button>
 </form>
-
 @endsection
