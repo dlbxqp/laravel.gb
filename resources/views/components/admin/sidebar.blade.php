@@ -22,15 +22,19 @@
  padding: 10px;
  white-space: nowrap
 }
+
+#sidebar .active{
+ color: lightseagreen
+}
 </style>
 
 <aside id="sidebar">
  <menu>
   <li>
-   <a href="{{route('admin.news.sections')}}">Разделы новостей</a>
+   <a href="{{route('admin.news.sections')}}"@if(request()->routeIs('admin.news.sections')) class="active"@endif>Разделы новостей</a>
   </li>
   <li>
-   <a href="{{route('admin.news.allNews')}}">Новости</a>
+   <a href="{{route('admin.news.allNews')}}"@if(request()->routeIs('admin.news.allNews')) class="active"@endif>Новости</a>
   </li>
  </menu>
 </aside>

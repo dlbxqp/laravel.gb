@@ -38,7 +38,9 @@ td{
    <td>{{$oneNews['author']}}</td>
    <td>{{$oneNews['image']}}</td>
    <td>{!!$oneNews['description']!!}</td>
-   <td></td>
+   <td>
+    <a href="{{route('admin.news.editNews', ['id' => $oneNews['id']])}}">Редактировать</a>
+   </td>
   </tr>
  @empty
   <tr>

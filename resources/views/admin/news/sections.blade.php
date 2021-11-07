@@ -32,7 +32,9 @@ td{
    <td>{{$section['id']}}</td>
    <td>{{$section['title']}}</td>
    <td>{!!$section['description']!!}</td>
-   <td></td>
+   <td>
+    <a href="{{route('admin.news.editSection', ['id' => $section['id']])}}">Редактировать</a>
+   </td>
   </tr>
 @empty
   <tr>

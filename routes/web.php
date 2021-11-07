@@ -9,18 +9,22 @@ use App\Http\Controllers\NewsController;
 
 Route::group(['prefix' => 'a', 'as' => 'admin.'], function(){
  //Route::resource('/', AuthorisationController::class);
- Route::get('/', [AuthorisationController::class, 'index']);
+ Route::get('/', [AuthorisationController::class, '__invoke']);
  //Route::resource('/news', AdminNewsController::class);
  Route::get('/news', [AdminNewsController::class, 'getAllNews'])
   ->name('news.allNews'); //Присвоение имени роутеру по которому в дальнейшем можно к нему обращаться
- Route::get('/news/{id}', [AdminNewsController::class, 'getOneNews'])
+ Route::get('/news/new', [AdminNewsController::class, 'editNews'])
+  ->name('news.createNews');
+ Route::get('/news/{id}', [AdminNewsController::class, 'editNews'])
   ->where('id', '\d+')
-  ->name('news.oneNews');
+  ->name('news.editNews');
  Route::get('/news/sections', [AdminNewsController::class, 'getSections'])
   ->name('news.sections');
- Route::get('/news/section/{id}', [AdminNewsController::class, 'getSection'])
+ Route::get('/news/section/{id}', [AdminNewsController::class, 'editSection'])
   ->where('id', '\d+')
-  ->name('news.section');
+  ->name('news.editSection');
+ Route::post('/news/store', [AdminNewsController::class, 'newsStore'])
+  ->name('news.store');
 });
 
 Route::get('/', [MainPageController::class, 'index']);

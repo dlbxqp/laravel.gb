@@ -10,10 +10,10 @@ class NewsController extends Controller{
    'allNews' => $this->getNews()
   ]);
  }
- public function getOneNews(int $code){
+ public function editNews(int $code){
   $news = $this->getNews()[$code] ?? abort(404);
 
-  return view('admin.news.oneNews', [
+  return view('admin.news.editNews', [
    'oneNews' => $news
   ]);
  }
@@ -23,28 +23,30 @@ class NewsController extends Controller{
    'sections' => $this->getNewsSections()
   ]);
  }
- public function getSection(int $id){
+ public function editSection(int $id){
   $section = $this->getNewsSections()[$id] ?? abort(404);
 
-  return view('admin.news.section', [
+  return view('admin.news.editSection', [
    'section' => $section
   ]);
  }
 
- public function create(){
-  return 'Добавление новости';
- }
+ public function newsStore(Request $request){
+  //dd($request->except('_token'));
+  if($request->input('type') == 'section'){
+   $request->validate(['title' => ['required', 'string']]);
+   $request->validate(['description' => ['required', 'string']]);
 
- public function store(Request $request){
-  return "<h1>store</h1>";
- }
+   \Storage::append('sections.json', json_encode($request->except('_token')));
+  } else{
+   $request->validate(['title' => ['required', 'string']]);
+   $request->validate(['author' => ['required', 'string']]);
+   $request->validate(['description' => ['required', 'string']]);
 
- public function show($id){
-  return "<h1>show</h1>";
- }
+   \Storage::append('news.json', json_encode($request->except('_token')));
+  }
 
- public function edit($id){
-  return "<h1>edit</h1>";
+  return response($request->except('_token'))->header('Content-type', 'text/html');
  }
 
  public function update(Request $request, $id){
